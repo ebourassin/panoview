@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="generator" content="pandoc">
+        <meta name="author" content="Division des enseignements en informatique" />
+        <meta name="dcterms.date" content="2017-01-01" />
+        <title>Mobile mapping</title>
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="reveal.js/css/reveal.css">
+
+        <!-- For syntax highlighting -->
+        <style type="text/css">code{white-space: pre;}</style>
+        <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+        </style>
+        <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+        <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+
+
+	<!-- Styles ENSG-IGN -->
+	<link rel="stylesheet" href="css/ign.css">
+
+        <!-- Printing and PDF exports -->
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script type="text/javascript">
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'reveal.js/css/print/'+ (window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper') + '.css';
+            link.media = 'print';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script type="text/javascript" type="text/javascript" src="reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+        <!-- -H/- -include-in-header -->
+    </head>
+    <body>
+        <!-- -B/- -include-before-body -->
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+              <section>
+                <h1>Mobile mapping : visualisation d'images panoramiques couleur à partir des images brutes acquises par Stéréopolis</h1>
+                <h3>Commanditaire : Jean-Pierre PAPELARD (DIAS / MATIS)</h3>
+                <h3>Emmanuel BOURASSIN - 14 décembre 2018</h3>
+                </section>
+
+
+                <!-- - -toc/- -table-of-contents -->
+
+            <!-- ne pas indenter le $body$ sinon les codes (highlight) vont l'être aussi !!! -->
+<section id="section0" class="level1">
+  <section id="section0-0" class="level2">
+  <h2>Sommaire</h2>
+  <ul>
+    <li class="fragment grow">Contexte et objectif</li>
+    <li class="fragment grow">Analyse fonctionnelle</li>
+    <li class="fragment grow">Analyse technique</li>
+  </ul>
+
+  </section>
+</section>
+
+<section id="contexte" class="level2">
+  <h1>Contexte et objectif</h1>
+
+  <section id="context-1" class="level2">
+    <h3>Sommaire</h3>
+    <ul>
+      <li class="fragment grow">Contexte et objectif</li>
+      <li>Analyse fonctionnelle</li>
+      <li>Analyse technique</li>
+    </ul>
+  </section>
+
+  <section id="context-2" class="level2">
+    <h3>Stéréopolis</h3>
+    <img src="image/stereopolis_v2.png" alt="">
+  </section>
+
+  <section id="context-5" class="level2">
+    <h3>Panoramique</h3>
+    <img src="image/generationPano.png" alt="">
+  </section>
+
+  <section id="context-3" class="level2">
+    <h3>Trajectographie</h3>
+    <img src="image/traj_data.png" alt="">
+  </section>
+
+</section>
+
+<section id="fonct" class="level2">
+  <h1>Analyse fonctionnelle</h1>
+
+  <section id="fonct-1" class="level2">
+    <h3>Sommaire</h3>
+    <ul>
+      <li>Contexte et objectif et objectif</li>
+      <li class="fragment grow">Analyse fonctionnelle</li>
+      <li>Analyse technique</li>
+    </ul>
+  </section>
+
+  <section id="fonct-2" class="level2">
+    <h3>Grandes étapes</h3>
+    <img src="image/base.png" alt="">
+
+  </section>
+  <section id="fonct-3" class="level2">
+    <h3>Gestion des données</h3>
+    <ul>
+      <li>Images brutes</li>
+      <li>Données de calibration des caméras</li>
+      <li>Données de trajectographie</li>
+    </ul>
+
+  </section>
+  <section id="fonct-4" class="level2">
+    <h3>Génération de la panoramique</h3>
+    <img src="image/gen_pano.png" alt="">
+  </section>
+
+  <section id="fonct-5" class="level2">
+    <h3>Débayerisation</h3>
+    <img src="image/debayerisation.png" alt="">
+  </section>
+
+  <section id="fonct-6" class="level2">
+    <h3>Correction des distorsions</h3>
+    <img src="image/distorsion.png" alt="">
+  </section>
+
+  <section id="fonct-7" class="level2">
+    <h3>Visualisation de la panoramique</h3>
+    <img src="image/visu.png" alt="">
+  </section>
+  <section id="fonct-8" class="level2">
+    <h3>Génération du graphe</h3>
+    <img src="image/graphe.png" alt="">
+  </section>
+
+  <section id="fonct-9" class="level2">
+    <h3>Diagramme de classe</h3>
+    <img src="image/diagramme_classes.png" alt="">
+  </section>
+
+</section>
+
+
+
+
+<section id="tech" class="level1">
+  <h1>Analyse technique</h1>
+
+  <section id="tech-0" class="level2">
+  <h2>Partie 3</h2>
+  <ul>
+    <li>Contexte et objectif et objectif</li>
+    <li>Analyse fonctionnelle</li>
+    <li class="fragment grow">Analyse technique</li>
+  </ul>
+  </section>
+
+  <section id="tech-1" class="level2">
+    <h3>Existant</h3>
+<img src="image/existant_debayer.png" alt="">
+  </section>
+
+  <section id="tech-2" class="level2">
+    <h3>Existant</h3>
+<img src="image/existant_panoramicopolis.png" alt="">
+  </section>
+
+  <section id="tech-2" class="level2">
+    <h3>Interface</h3>
+
+    <img src="image/ui.png" alt="">
+
+  </section>
+
+
+</section>
+
+<section id="section4" class="level1">
+
+  <section id="section4-0" class="level2">
+  <h2>Des questions ?</h2>
+  </section>
+</section>
+
+
+
+            </div>
+        </div>
+
+        <script type="text/javascript" src="reveal.js/lib/js/head.min.js"></script>
+        <script type="text/javascript" src="reveal.js/js/reveal.js"></script>
+
+        <script type="text/javascript">
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                /* mettre une taille en pixel sinon l'overview ne fonctionne plus */
+                width: 1200,
+                height: 800,
+                controls: true,                                 // Display controls in the bottom right corner
+                progress: true,                                 // Display a presentation progress bar
+                history: true,                                  // Push each slide change to the browser history
+                center: true, // Vertical centering of slides
+                minScale: 0.2, // Bounds for smallestpossible content scale
+                maxScale: 1.5, // Bounds for largest possible content scale
+                slideNumber: true, // Display the page number of the current slide
+                autoSlide: 0, // Slide every duration milliseconds
+
+                theme: 'solarized', // available themes are in /css/theme
+                transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    // { src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    // { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    /* ne pas activer highlight sinon la colorisation syntaxique ne fonctionne plus ? */
+                    // { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }//,
+                    // { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+                    // { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+        <!-- -A/- -include-after-body -->
+        <!-- comme le footer contient des variables, on le met dans le gabarit car
+             les variables ne sont pas interprétées via -A de pandoc -->
+    </body>
+</html>
